@@ -3,6 +3,9 @@ const db = require('../../data/dbConfig.js');
 module.exports = {
   find,
   findById,
+  getThumbnail,
+  getImages,
+  getTechnologies,
   add,
   update,
   remove
@@ -19,6 +22,21 @@ function findById(id) {
     .where( 'project_id', id )
     .first();
 }
+
+function getThumbnail(id) {
+  return db('images').where('image_project_id', id).where('thumbnail', true).first();
+}
+
+
+function getImages(id) {
+  return db('images').where('image_project_id', id).where('thumbnail', false)
+}
+
+
+function getTechnologies(id) {
+  return db('projects_to_technologies').join('technologies', 'projects_to_technologies.pt_technology_id', 'technologies.technology_id').where('pt_project_id', id)
+}
+
 
 function add(item) {
   return db('projects')

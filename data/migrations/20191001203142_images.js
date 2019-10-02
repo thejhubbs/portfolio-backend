@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
       tbl.increments('image_id');
       tbl.text('image_name', 128).notNullable();
       tbl.text('image_description').notNullable();
+      tbl.text('image_url')
       tbl.boolean('thumbnail');
       tbl.integer('image_project_id')
         .unsigned()

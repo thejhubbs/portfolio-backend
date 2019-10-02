@@ -3,6 +3,7 @@ const express = require('express');
 const Images = require('./model.js');
 
 const router = express.Router();
+const {restricted} = require('../middleware.js')
 
 router.get('/', (req, res) => {
   Images.find()
@@ -29,7 +30,7 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
+router.post('/', restricted, (req, res) => {
   const data = req.body;
 
   Images.add(data)
@@ -41,7 +42,7 @@ router.post('/', (req, res) => {
   });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -57,7 +58,7 @@ router.put('/:id', (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
   const { id } = req.params;
       Images.remove(id)
       .then(deleted => {

@@ -4,6 +4,8 @@ const Technologies = require('./model.js');
 
 const router = express.Router();
 
+const {restricted} = require('../middleware.js')
+
 router.get('/', (req, res) => {
   Technologies.find()
   .then(technologies => {
@@ -14,22 +16,19 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const { id } = req.params;
 
-  Technologies.findById(id)
-  .then(technology => {
-    if (technology) {
-      res.json(technology)
-    } else {
-      res.status(404).json({ message: 'Could not find technology with given id.' })
-    }
-  })
-  .catch(err => {res.status(500).json({ message: 'Failed to get technologies' });});
+  const technology = await Technologies.findById(id)
+  const children = await Technologies.getChildren(id)
+  const parent = await Technologies.getParent(technology.parent_id)
+  const projects = await Technologies.getProjects(id)
+
+  res.json({...technology, children, parent, projects})
 });
 
 
-router.post('/', (req, res) => {
+router.post('/', restricted, (req, res) => {
   const data = req.body;
 
   Technologies.add(data)
@@ -41,7 +40,7 @@ router.post('/', (req, res) => {
   });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -57,7 +56,7 @@ router.put('/:id', (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
   const { id } = req.params;
       Technologies.remove(id)
       .then(deleted => {

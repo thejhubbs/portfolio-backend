@@ -3,6 +3,7 @@ const express = require('express');
 const Projects = require('./model.js');
 
 const router = express.Router();
+const {restricted} = require('../middleware.js')
 
 router.get('/', (req, res) => {
   Projects.find()
@@ -14,22 +15,20 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const { id } = req.params;
 
-  Projects.findById(id)
-  .then(project => {
-    if (project) {
-      res.json(project)
-    } else {
-      res.status(404).json({ message: 'Could not find project with given id.' })
-    }
-  })
-  .catch(err => {res.status(500).json({ message: 'Failed to get projects' });});
+  const project = await Projects.findById(id)
+  const thumbnail = await Projects.getThumbnail(id)
+  const images = await Projects.getImages(id)
+  const technologies = await Projects.getTechnologies(id)
+
+  res.json({...project, thumbnail, images, technologies})
+
 });
 
 
-router.post('/', (req, res) => {
+router.post('/', restricted, (req, res) => {
   const data = req.body;
 
   Projects.add(data)
@@ -41,7 +40,7 @@ router.post('/', (req, res) => {
   });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
@@ -57,7 +56,7 @@ router.put('/:id', (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
   const { id } = req.params;
       Projects.remove(id)
       .then(deleted => {
