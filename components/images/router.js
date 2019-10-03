@@ -5,6 +5,15 @@ const Images = require('./model.js');
 const router = express.Router();
 const {restricted} = require('../middleware.js')
 
+const multer = require('../../config/multer')
+const multerUploads = multer.multerUploads
+const dataUri = multer.dataUri
+
+const cloudinary = require('../../config/cloudinaryConfig')
+const uploader = cloudinary.uploader
+const cloudinaryConfig = cloudinary.cloudinaryConfig
+
+
 router.get('/', (req, res) => {
   Images.find()
   .then(images => {
@@ -30,32 +39,65 @@ router.get('/:id', (req, res) => {
 });
 
 
-router.post('/', restricted, (req, res) => {
-  const data = req.body;
+router.post('/', restricted, multerUploads, cloudinaryConfig, (req, res) => {
+  const imageData = req.body;
+  const imageFile = req.file;
 
-  Images.add(data)
-  .then(image => {
-    res.status(201).json(image);
+  //store the process image as a 'data-uri'
+  const file = dataUri(req).content;
+
+  //Uploading the image to cloudinary
+  uploader.upload(file)
+  .then((result) => {
+    imageData.image_url = result.url;
+    //Add the image to the database.
+    Images.add(imageData)
+        .then(image => {
+          res.status(201).json(image);
+        })
+        .catch (err => {
+          res.status(500).json({ message: 'Failed to create new image' });
+        });
   })
-  .catch (err => {
-    res.status(500).json({ message: 'Failed to create new image.' });
-  });
+  .catch((err) => res.status(400).json({
+    messge: 'someting went wrong while processing your request',
+    data: { err }
+  }))
 });
 
-router.put('/:id', restricted, (req, res) => {
+router.put('/:id', restricted, multerUploads, cloudinaryConfig, (req, res) => {
   const { id } = req.params;
-  const changes = req.body;
+  const imageData = req.body;
+  const imageFile = req.file;
+  //store the process image as a 'data-uri'
+  const file = dataUri(req).content;
+  //Uploading the image to cloudinary
 
-  Images.update(changes, id)
-  .then(updated => {
+  console.log(imageData)
+
+  uploader.upload(file)
+  .then((result) => {
+    imageData.image_url = result.url;
+    //Add the image to the database.
     Images.findById(id)
     .then(image => {
-      res.json(image);
+      if (image) {
+        Images.update(imageData, id)
+        .then(updatedImage => {
+          res.json(updatedImage);
+        });
+      } else {
+        res.status(404).json({ message: 'Could not find image with given id' });
+      }
     })
+    .catch (err => {
+      res.status(500).json({ message: 'Failed to update image' });
+    });
   })
-  .catch (err => {
-    res.status(500).json({ message: 'Failed to update image' });
-  });
+  .catch((err) => res.status(400).json({
+    messge: 'someting went wrong while processing your request',
+    data: { err }
+  }))
 });
 
 router.delete('/:id', restricted, (req, res) => {

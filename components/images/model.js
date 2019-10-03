@@ -26,7 +26,8 @@ function add(item) {
     .returning('image_id')
     .then(ids => {
       return findById(ids[0]);
-    });
+    })
+    .catch(err => {console.log(err)});
 }
 
 function update(changes, id) {
