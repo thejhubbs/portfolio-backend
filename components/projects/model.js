@@ -15,6 +15,9 @@ module.exports = {
 
 function find() {
   return db('projects')
+  .orderBy('project_show_priority')
+  .leftJoin('images', 'projects.project_id', 'images.image_project_id')
+  .where('thumbnail', true)
 }
 
 function findById(id) {
