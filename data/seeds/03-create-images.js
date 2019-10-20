@@ -163,6 +163,43 @@ exports.seed = function(knex) {
           "image_url": "https://res.cloudinary.com/scaredsleepless/image/upload/v1570901497/vyd1acv4afxg2ieiamht.png",
           "thumbnail": false,
           "image_project_id": 9
+      },
+
+
+      {
+          "image_name": "something",
+          "image_description": "something",
+          "image_url": "http://res.cloudinary.com/scaredsleepless/image/upload/v1571438494/hadi3wxoqwzrdbac3rfy.png",
+          "thumbnail": false,
+          "image_project_id": 4
+      },
+      {
+          "image_name": "something",
+          "image_description": "something",
+          "image_url": "http://res.cloudinary.com/scaredsleepless/image/upload/v1571438509/xoruo7yqfcdcgpcx2rcv.png",
+          "thumbnail": true,
+          "image_project_id": 4
+      },
+      {
+          "image_name": "something",
+          "image_description": "something",
+          "image_url": "http://res.cloudinary.com/scaredsleepless/image/upload/v1571438522/pjahxw9lilkqoleu38l4.png",
+          "thumbnail": false,
+          "image_project_id": 4
+      },
+      {
+          "image_name": "something",
+          "image_description": "something",
+          "image_url": "http://res.cloudinary.com/scaredsleepless/image/upload/v1571438533/vegxk7brurnq9810hwvl.png",
+          "thumbnail": false,
+          "image_project_id": 4
+      },
+      {
+          "image_name": "something",
+          "image_description": "something",
+          "image_url": "http://res.cloudinary.com/scaredsleepless/image/upload/v1571438568/q5m12pximbc9n7gmbedc.png",
+          "thumbnail": false,
+          "image_project_id": 4
       }
 
 

@@ -13,7 +13,7 @@ exports.seed = function(knex) {
           github_link_2: "https://github.com/Grimwire/grimwire-backend",
           live_link: "https://grimwire.netlify.com/"
         },
-        //2
+        //2- finish building before images
         {
           project_name: "My Portfolio",
           project_description: "Gallery/portfolio built on React & Express",
@@ -41,13 +41,13 @@ exports.seed = function(knex) {
         },
         //4
         {
-          project_name: "That One Guy",
+          project_name: "The Dhali Group",
           project_description: "Freelance CSS/HTML/JS work completed & used in production for marketing company.",
           project_show_priority: 3,
           project_details: "Found on Upwork, a marketing firm I did 20 hours of freelance work for.",
-          project_development: "",
+          project_development: "We did several rounds of designing HTML/CSS/JS components for his client's WordPress site. The client was very pleased with the results.",
           project_reflection: "",
-          project_future: "We ended the contract.",
+          project_future: "",
           github_link: "",
           github_link_2: "",
           live_link: ""
@@ -60,15 +60,15 @@ exports.seed = function(knex) {
           project_details: "",
           project_development: "",
           project_reflection: "",
-          project_future: "",
+          project_future: "I like it as a good start, but would like to include a few more features.",
           github_link: "https://github.com/thejhubbs/splat",
           github_link_2: "",
           live_link: "http://splat.website"
         },
-        //6
+        //6- REPLACE
         {
-          project_name: "Colors.LESS",
-          project_description: "A LESS-based 'script' that takes in a hex-color and settings and outputs color schemes.",
+          project_name: "Workout Builder",
+          project_description: "A ruby on rails thing i hope to build.",
           project_show_priority: 3,
           project_details: "",
           project_development: "",
@@ -81,17 +81,17 @@ exports.seed = function(knex) {
         //7
         {
           project_name: "VaxTrack Website",
-          project_description: "",
+          project_description: "A multi-page website co-created with another developer for Lambda.",
           project_show_priority: 4,
           project_details: "",
-          project_development: "",
+          project_development: "We worked great together and had good communication. We took turns knocking things out and fixing bugs.",
           project_reflection: "",
-          project_future: "",
+          project_future: "With some polishing, I'd like to turn this into a multi-page website template, for simpler marketing-type pages such as this.",
           github_link: "https://github.com/BW1-WebPT6-immunization-tracking/marketing_immization_tracking",
           github_link_2: "",
           live_link: "https://bw1-webpt6-immunization-tracking.github.io/marketing_immization_tracking/"
         },
-        //8
+        //8- Make a live wordpress site
         {
           project_name: "JLC Website",
           project_description: "",
@@ -104,20 +104,20 @@ exports.seed = function(knex) {
           github_link_2: "",
           live_link: ""
         },
-        //9
+        //9- Add nosql database
         {
           project_name: "Scale Theory",
           project_description: "A pure JS app that allows users to interact with an on-screen guitar/bass and display scales and tunings.",
           project_show_priority: 2,
           project_details: "",
-          project_development: "",
-          project_reflection: "",
-          project_future: "",
+          project_development: "I created custom Javascript to do the 'music' work, creating Notes, Scales, and other classes.",
+          project_reflection: "I'm happy with how it turned out, and really think this would be a great idea to develop further.",
+          project_future: "Right now, the main thing I would like to upgrade is the data storage. It is currently using hardcoded JSON objects for it's data. It would be nice to implement an actual database.",
           github_link: "https://github.com/thejhubbs/scale-theory",
           github_link_2: "",
           live_link: "http://scale-theory.site"
         },
-        //10
+        //10- make landing page w/ pictures & features
         {
           project_name: "Responsive",
           project_description: "A LESS file to simply get the basic responsive box classes, similar to the Bootstrap classes, including 5 breakpoints..",
@@ -135,10 +135,10 @@ exports.seed = function(knex) {
           project_name: "ColorPal",
           project_description: "A quickly-made color palette generator with PHP & NoSQL",
           project_show_priority: 3,
-          project_details: "",
+          project_details: "I was frustrated the amount of color palettes out there, yet none of them generated shades for you, and many forced you to use either: a) very strict, or b) seemingly random, selection methods to generate your colors.",
           project_development: "",
-          project_reflection: "",
-          project_future: "",
+          project_reflection: "It serves it's purpose as a tool I created for myself and can share with others.",
+          project_future: "It's not very intuitive or very pleasing to look at. It would be awesome to make it much more user friendly overall.",
           github_link: "https://github.com/thejhubbs/responsive",
           github_link_2: "",
           live_link: "http://colorpal.jhubb.tech"
