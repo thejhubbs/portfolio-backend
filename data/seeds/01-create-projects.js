@@ -19,7 +19,7 @@ exports.seed = function(knex) {
           project_description: "Gallery/portfolio built on React & Express",
           project_show_priority: 2,
           project_details: "The portfolio you're viewing now, custom made by me.",
-          project_development: "I really wanted to put a little extra into a site for myself.",
+          project_development: "I really wanted to put a little extra into a site for myself, and polish it nicely.",
           project_reflection: "",
           project_future: "",
           github_link: "",
