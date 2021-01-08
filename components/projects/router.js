@@ -8,6 +8,9 @@ const {restricted} = require('../middleware.js')
 router.get('/', (req, res) => {
   Projects.find()
   .then(projects => {
+
+    projects = projects.map( (p) => ({...p, ...Projects.getThumbnail(p.project_id) }) )
+
     res.json(projects)
   })
   .catch(err => {
