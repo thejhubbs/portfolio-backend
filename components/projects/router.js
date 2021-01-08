@@ -5,11 +5,11 @@ const Projects = require('./model.js');
 const router = express.Router();
 const {restricted} = require('../middleware.js')
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   Projects.find()
-  .then(projects => {
+  .then(projects =>  {
 
-    projects = projects.map( (p) => ({...p, ...Projects.getThumbnail(p.project_id) }) )
+    projects = projects.map( async (p) => ({...p, ...( await Projects.getThumbnail(p.project_id)) }) )
 
     res.json(projects)
   })
