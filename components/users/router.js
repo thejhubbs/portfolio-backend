@@ -10,6 +10,7 @@ const {restricted} = require('../middleware.js')
 
 router.post('/login', (req, res) => {
   let {username, password} = req.body
+  console.log(username, password)
 
   Users.findByUsername(username)
   .then(user => {
@@ -21,7 +22,7 @@ router.post('/login', (req, res) => {
     }
   })
   .catch(error => {
-    res.status(500).json({message: "Invalid Credentials."})
+    res.status(500).json({message: "Invalid Credentialse."})
   })
 })
 
