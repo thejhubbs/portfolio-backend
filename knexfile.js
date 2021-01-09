@@ -7,9 +7,10 @@ module.exports = {
     connection: {
       host : '127.0.0.1',
       user : 'postgres',
-      password : '',
+      password : '1234',
       database : 'portfolio',
-      charset: 'utf8'
+      charset: 'utf8',
+      
     },
     migrations: { directory: './data/migrations' },
     seeds: { directory: './data/seeds' }
@@ -32,6 +33,4 @@ module.exports = {
     migrations: { directory: './data/migrations' },
     seeds: { directory: './data/seeds' }
   }
-
-
 };
